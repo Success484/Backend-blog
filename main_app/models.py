@@ -33,6 +33,8 @@ class Post(models.Model):
     published_date = models.DateField(auto_now_add=True)
     author = models.CharField(max_length=100)
     thubnail = models.ImageField(upload_to="thunbnail", default="example.jpg")
+    category = models.ForeignKey(Category, related_name='article', on_delete=models.CASCADE, default=1)
+    tags = models.ManyToManyField(Tag)
 
     def __str__(self) -> str:
         return self.title

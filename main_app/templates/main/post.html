@@ -33,7 +33,9 @@
                             <p>
                                 {{article.article}}
                             </p>
-                            <span class="d-block text-right tm-color-primary">Creative . Design . Business</span>
+                            {%for cat in article.tags.all%}
+                            <span class="d-block text-right tm-color-primary">{{cat.name}}</span>
+                            {%endfor%}
                         </div>
                         
                         <!-- Comments -->
@@ -43,14 +45,12 @@
                             <div class="tm-comment tm-mb-45">
                                 <figure class="tm-comment-figure">
                                     <img src="{%static 'img/comment-1.jpg'%}" alt="Image" class="mb-2 rounded-circle img-thumbnail">
-                                    <figcaption class="tm-color-primary text-center">Mark Sonny</figcaption>
+                                    {%for coms in coment%}
+                                    <figcaption class="tm-color-primary text-center">{{coms.name}}</figcaption>
                                 </figure>
                                 <div>
                                     <p>
-                                        Praesent aliquam ex vel lectus ornare tritique. Nunc et eros
-                                        quis enim feugiat tincidunt et vitae dui. Nullam consectetur
-                                        justo ac ex laoreet rhoncus. Nunc id leo pretium, faucibus 
-                                        sapien vel, euismod turpis.
+                                       {{coms.message}}
                                     </p>
                                     <div class="d-flex justify-content-between">
                                         <a href="#" class="tm-color-primary">REPLY</a>
@@ -58,6 +58,7 @@
                                     </div>                                                 
                                 </div>                                
                             </div>
+                            {%endfor%}
                             <div class="tm-comment-reply tm-mb-45">
                                 <hr>
                                 <div class="tm-comment">
@@ -96,22 +97,21 @@
                         <hr class="mb-3 tm-hr-primary">
                         <h2 class="mb-4 tm-post-title tm-color-primary">Categories</h2>
                         <ul class="tm-mb-75 pl-5 tm-category-list">
-                            <li><a href="#" class="tm-color-primary">Visual Designs</a></li>
-                            <li><a href="#" class="tm-color-primary">Travel Events</a></li>
-                            <li><a href="#" class="tm-color-primary">Web Development</a></li>
-                            <li><a href="#" class="tm-color-primary">Video and Audio</a></li>
-                            <li><a href="#" class="tm-color-primary">Etiam auctor ac arcu</a></li>
-                            <li><a href="#" class="tm-color-primary">Sed im justo diam</a></li>
+                        {%for cat in articles%}
+                            <li><a href="#" class="tm-color-primary">{{cat.name}}</a></li>
+                        {%endfor%}
                         </ul>
                         <hr class="mb-3 tm-hr-primary">
                         <h2 class="tm-mb-40 tm-post-title tm-color-primary">Related Posts</h2>
                         <a href="#" class="d-block tm-mb-40">
                             <figure>
-                                <img src="{%static 'img/img-02.jpg'%}" alt="Image" class="mb-3 img-fluid">
-                                <figcaption class="tm-color-primary">Duis mollis diam nec ex viverra scelerisque a sit</figcaption>
+                                {%for sim in similar%}
+                                <img src="{{sim.thubnail.url}}" alt="Image" class="mb-3 img-fluid">
+                                <figcaption class="tm-color-primary">{{sim.category}}</figcaption>
+                                {%endfor%}
                             </figure>
                         </a>
-                        <a href="#" class="d-block tm-mb-40">
+                        <!-- <a href="#" class="d-block tm-mb-40">
                             <figure>
                                 <img src="{%static 'img/img-05.jpg'%}" alt="Image" class="mb-3 img-fluid">
                                 <figcaption class="tm-color-primary">Integer quis lectus eget justo ullamcorper ullamcorper</figcaption>
@@ -122,7 +122,7 @@
                                 <img src="{%static 'img/img-06.jpg'%}" alt="Image" class="mb-3 img-fluid">
                                 <figcaption class="tm-color-primary">Nam lobortis nunc sed faucibus commodo</figcaption>
                             </figure>
-                        </a>
+                        </a> -->
                     </div>                    
                 </aside>
             </div>
